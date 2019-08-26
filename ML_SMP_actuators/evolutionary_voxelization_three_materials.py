@@ -21,7 +21,7 @@ rcParams.update({'font.size': 16})
 rcParams.update({'figure.autolayout': True})
 
 
-GENERATE_SCRIPT = 'objet_SMP.py'
+GENERATE_SCRIPT = 'objet_SMP_GUI.py'
 GENERATE_SCRIPT_GUI = 'objet_SMP_GUI.py'
 
 FREQ = 1
@@ -32,7 +32,7 @@ NGEN = 125
 MU = 15
 LAMBDA = 30
 
-CHECK_POINT = "checkpoint_objet_two_shapes_during_activation_three_materials.pkl"
+CHECK_POINT = "checkpoint_objet_two_shapes_during_activation_three_materials_v3.pkl"
 
 creator.create("FitnessFunc", base.Fitness, weights=(-1.0, -1.0))
 creator.create("Individual", list, fitness=creator.FitnessFunc)
@@ -375,10 +375,16 @@ def clear_directory():
                 pass
 
 
+def make_user_subroutines():
+    os.system('abaqus make library=utrs.for >NUL')
+
+
 if __name__ == '__main__':
 
-    check_point = CHECK_POINT
-    # check_point = None
+    make_user_subroutines()
+
+    # check_point = CHECK_POINT
+    check_point = None
     toolbox = base.Toolbox()
 
     toolbox.register("map", futures.map)
@@ -421,4 +427,4 @@ if __name__ == '__main__':
 
     evaluate_best(CHECK_POINT)
 
-    # post_process_evolution(CHECK_POINT)
+    post_process_evolution(CHECK_POINT)

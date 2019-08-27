@@ -330,37 +330,40 @@ class ActiveComposite:
         #
         self.m.ViscoStep(name='Loading',
                          previous='Initial',
-                         timePeriod=100,
+                         timePeriod=60,
                          initialInc=1,
                          minInc=1.e-8,
                          maxInc=25.0,
                          nlgeom=ON,
-                         cetol=0.05)
+                         cetol=0.05,
+                         maxNumInc=10000)
 
         self.m.ViscoStep(name='Hold',
                          previous='Loading',
-                         timePeriod=100,
+                         timePeriod=60,
                          initialInc=1,
                          nlgeom=ON,
-                         cetol=0.05)
+                         cetol=0.05,
+                         maxNumInc=10000)
 
         self.m.ViscoStep(name='Release',
                          previous='Hold',
-                         timePeriod=100,
+                         timePeriod=60,
                          initialInc=1,
                          minInc=1.e-8,
                          maxInc=5.0,
                          nlgeom=ON,
-                         cetol=0.05)
+                         cetol=0.05,
+                         maxNumInc=10000)
 
-        self.m.ViscoStep(name='Heat',
-                         previous='Release',
-                         timePeriod=100,
-                         initialInc=1,
-                         minInc=1.e-8,
-                         maxInc=5.0,
-                         nlgeom=ON,
-                         cetol=0.05)
+        # self.m.ViscoStep(name='Heat',
+        #                  previous='Release',
+        #                  timePeriod=60,
+        #                  initialInc=1,
+        #                  minInc=1.e-8,
+        #                  maxInc=5.0,
+        #                  nlgeom=ON,
+        #                  cetol=0.05)
         #
         # initial boundary conditions
         #
@@ -380,7 +383,7 @@ class ActiveComposite:
         load_bc = self.m.DisplacementBC(name='RightEdgeLoad',
                                         createStepName='Loading',
                                         region=a.sets['Right_edge'],
-                                        u1=20.0,
+                                        u1=7.0,
                                         u2=0.0)
 
         load_bc.deactivate(stepName='Release')
@@ -395,24 +398,24 @@ class ActiveComposite:
         # amplitude for cooling
         #
         a_cool = self.m.EquallySpacedAmplitude(name='cooling',
-                                               fixedInterval=100,
+                                               fixedInterval=60,
                                                data=(4, 1,))
         #
         temp_field.setValuesInStep(stepName='Hold',
                                    amplitude='cooling',
-                                   magnitudes=0)
+                                   magnitudes=25.0)
 
-        a_heat = self.m.EquallySpacedAmplitude(name='heating',
-                                               fixedInterval=100,
-                                               data=(.25, 1,))
-
-        temp_field.setValuesInStep(stepName='Heat',
-                                   amplitude='heating',
-                                   magnitudes=70)
+        # a_heat = self.m.EquallySpacedAmplitude(name='heating',
+        #                                        fixedInterval=60,
+        #                                        data=(.25, 1,))
+        #
+        # temp_field.setValuesInStep(stepName='Heat',
+        #                            amplitude='heating',
+        #                            magnitudes=30)
 
     def mesh_structure(self):
 
-        global_seed = self.voxel_size_x / 3.0
+        global_seed = min(self.voxel_size_x / 3.0, self.voxel_size_y / 3.0)
 
         p = self.m.parts['Base-Geometry']
 
@@ -458,7 +461,7 @@ class ActiveComposite:
         except RunTimeError:
             pass
 
-        if len(odb.steps['Heat'].frames) == 0:
+        if len(odb.steps['Release'].frames) == 0:
             # fout.write('*Simulation Failed\n')
             return
 
@@ -469,29 +472,26 @@ class ActiveComposite:
             x_coords.append(node.coordinates[0])
             y_coords.append(node.coordinates[1])
 
-        fieldnames = ['node_label', 'x_coordinate', 'y_coordinate']
+        fieldnames = ['node_label',
+                      'x_coordinate', 'y_coordinate',
+                      'x_displacement', 'y_displacement']
 
         with open(out, 'wb') as csv_file:
-            n = 1
-            x_disp, y_disp = [], []
-            for frame in odb.steps['Heat'].frames:
-                u = frame.fieldOutputs['U'].getSubset(region=nodes)
-                disp_node_labels, x_disp_temp, y_disp_temp = [], [], []
-                for v in u.values:
-                    disp_node_labels.append(v.nodeLabel)
-                    x_disp_temp.append(v.data[0])
-                    y_disp_temp.append(v.data[1])
+            frame = odb.steps['Release'].frames[-1]
+            u = frame.fieldOutputs['U'].getSubset(region=nodes)
+            disp_node_labels, x_disp_temp, y_disp_temp = [], [], []
+            for v in u.values:
+                disp_node_labels.append(v.nodeLabel)
+                x_disp_temp.append(v.data[0])
+                y_disp_temp.append(v.data[1])
 
-                for i in range(len(node_labels)):
-                    if node_labels[i] != disp_node_labels[i]:
-                        print('major problem')
-                        return
+            for i in range(len(node_labels)):
+                if node_labels[i] != disp_node_labels[i]:
+                    print('major problem')
+                    return
 
-                fieldnames.append('x_displacement_' + str(n))
-                fieldnames.append('y_displacement_' + str(n))
-                x_disp.append(x_disp_temp)
-                y_disp.append(y_disp_temp)
-                n = n + 1
+            x_disp = x_disp_temp
+            y_disp = y_disp_temp
 
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
             writer.writeheader()
@@ -499,11 +499,9 @@ class ActiveComposite:
             for i in range(len(node_labels)):
                 node_dict = {'node_label': node_labels[i],
                              'x_coordinate': x_coords[i],
-                             'y_coordinate': y_coords[i]}
-
-                for j in range(len(odb.steps['Heat'].frames)):
-                    node_dict.update({'x_displacement_' + str(j+1): x_disp[j][i],
-                                      'y_displacement_' + str(j+1): y_disp[j][i]})
+                             'y_coordinate': y_coords[i],
+                             'x_displacement': x_disp[i],
+                             'y_displacement': y_disp[i]}
 
                 writer.writerow(node_dict)
 
@@ -512,8 +510,8 @@ def main(gene_file, job_name):
 
     nx, ny, locations = read_genome(gene_file)
 
-    length = 80.0
-    height = 2.4
+    length = 70.0
+    height = 2.0
     voxel_size_x = length / nx
     voxel_size_y = height / ny
 
@@ -537,22 +535,11 @@ if __name__ == '__main__':
 
     args = sys.argv
 
-    print(args)
-
     for arg in args:
-        print(arg)
         if '.txt' in arg:
             index = args.index(arg)
 
-
-    # for GUI
     my_args = args[index:]
-
-    print(my_args)
-
-    # print(my_args)
-    # for noGUI
-    # my_args = args[8:]
 
     gene_file_in = my_args[0]
     job_name_in = my_args[1]

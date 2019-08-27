@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8a205e0c-f4cd-4156-8a3f-5b54f9e9bc8d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ML_SMP_actuators/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ML_SMP_actuators/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ML_SMP_actuators/evolutionary_voxelization_v4.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/evolutionary_voxelization_three_materials.py" beforeDir="false" afterPath="$PROJECT_DIR$/evolutionary_voxelization_three_materials.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objet_SMP.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evolutionary_voxelization_v4.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/objet_SMP_GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/objet_SMP_GUI.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,14 +70,49 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-1224146786">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="py" value="385" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Python" value="385" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="for" value="1" />
+          <entry key="py" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="Python" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/evolutionary_voxelization_three_materials.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="559">
-              <caret line="397" column="48" lean-forward="true" selection-start-line="397" selection-start-column="48" selection-end-line="397" selection-end-column="48" />
+            <state relative-caret-position="712">
+              <caret line="418" column="24" selection-start-line="414" selection-start-column="4" selection-end-line="418" selection-end-column="24" />
+              <folding>
+                <element signature="e#1016#3968#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -83,8 +120,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/objet_SMP_GUI.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4928">
-              <caret line="526" column="30" selection-start-line="526" selection-start-column="30" selection-end-line="526" selection-end-column="30" />
+            <state relative-caret-position="5695">
+              <caret line="385" column="43" selection-start-line="385" selection-start-column="43" selection-end-line="385" selection-end-column="43" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
                 <element signature="e#988#1316#0" />
@@ -127,8 +164,8 @@
         <subPane>
           <expand>
             <path>
-              <item name="ML_SMP_actuators" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ML_SMP_actuators" type="462c0819:PsiDirectoryNode" />
+              <item name="ML_SMP_shape_fixing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ML_SMP_shape_fixing" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -173,8 +210,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1294" height="1047" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25875795" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25796178" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -201,39 +239,19 @@
     <entry file="file://$PROJECT_DIR$/../pytorch_nn/voxel_model.py" />
     <entry file="file://$PROJECT_DIR$/../pytorch_nn/generate_random_models.py" />
     <entry file="file://$PROJECT_DIR$/output-job_temp_genome_individual1.csv" />
+    <entry file="file://$PROJECT_DIR$/evolutionary_voxelization_v4.py" />
+    <entry file="file://$PROJECT_DIR$/objet_SMP.py" />
     <entry file="file://$PROJECT_DIR$/utrs.for">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
-          <caret line="30" column="16" lean-forward="true" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/evolutionary_voxelization_v4.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3300">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/objet_SMP.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4029">
-          <caret line="252" selection-start-line="252" selection-end-line="252" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#11339#16282#0" />
-            <element signature="e#16323#16733#0" />
-            <element signature="e#16784#17505#0" />
-            <element signature="e#17575#18746#0" />
-            <element signature="e#18813#21045#0" />
-          </folding>
+          <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/objet_SMP_GUI.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4928">
-          <caret line="526" column="30" selection-start-line="526" selection-start-column="30" selection-end-line="526" selection-end-column="30" />
+        <state relative-caret-position="5695">
+          <caret line="385" column="43" selection-start-line="385" selection-start-column="43" selection-end-line="385" selection-end-column="43" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
             <element signature="e#988#1316#0" />
@@ -244,10 +262,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-2109429823/numpy/core/_multiarray_umath.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3203">
+          <caret line="748" column="20" selection-start-line="748" selection-start-column="20" selection-end-line="748" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/evolutionary_voxelization_three_materials.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="559">
-          <caret line="397" column="48" lean-forward="true" selection-start-line="397" selection-start-column="48" selection-end-line="397" selection-end-column="48" />
+        <state relative-caret-position="712">
+          <caret line="418" column="24" selection-start-line="414" selection-start-column="4" selection-end-line="418" selection-end-column="24" />
+          <folding>
+            <element signature="e#1016#3968#0" />
+          </folding>
         </state>
       </provider>
     </entry>

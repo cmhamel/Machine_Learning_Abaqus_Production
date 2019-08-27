@@ -29,12 +29,12 @@ CXPB = 0.6
 MUTPB = 0.3
 NGEN = 125
 
-MU = 15
+MU = 16
 LAMBDA = 30
 
-CHECK_POINT = "checkpoint_objet_two_shapes_during_activation_three_materials_v3.pkl"
+CHECK_POINT = "checkpoint_objet_three_material_shape_fixing_sinusoid.pkl"
 
-creator.create("FitnessFunc", base.Fitness, weights=(-1.0, -1.0))
+creator.create("FitnessFunc", base.Fitness, weights=(-1.0, ))
 creator.create("Individual", list, fitness=creator.FitnessFunc)
 
 
@@ -241,8 +241,8 @@ def evaluate_design(individual, gui=False, evaluatebest=False):
                     plt.figure(1)
                     plt.plot(sorted_xs, analytic_uy_1,
                              color='k', label='Desired Shape 1')
-                    plt.plot(sorted_xs, analytic_uy_2,
-                             color='r', label='Desired Shape 2')
+                    # plt.plot(sorted_xs, analytic_uy_2,
+                    #          color='r', label='Desired Shape 2')
                     plt.plot(sorted_xs, sorted_uy,
                              color='b', label='Achieved Shape')
                     plt.xlabel('X Coordinates (mm)')
@@ -259,11 +259,11 @@ def evaluate_design(individual, gui=False, evaluatebest=False):
                 errors_1.append(error_1)
                 errors_2.append(error_2)
 
-    return min(errors_1), min(errors_2)
+    return min(errors_1), #min(errors_2)
 
 
 def target_shape_function(xs):
-    analytic_uy_1 = -10.0 * (np.ones(len(xs)) - np.cos(np.pi*xs/80.0))
+    analytic_uy_1 = -4.0 * (np.ones(len(xs)) - np.cos(np.pi*xs/80.0))
 
     analytic_uy_2 = -10.0 * np.square(2*xs/80.0)
 
@@ -300,16 +300,10 @@ def evaluate_best(checkpoint):
         random.setstate(cp["rndstate"])
         best_specimens = cp["bestspecimens"]
 
-    print(len(halloffame))
-    print(type(logbook))
     print(logbook)
     print(halloffame)
 
-    error1, error_2 = evaluate_design(halloffame[0], gui=True, evaluatebest=True)
-
-    print(error1)
-    print(error_2)
-    # print(error3)
+    error = evaluate_design(halloffame[0], gui=True, evaluatebest=True)
 
     generations = logbook.select("gen")
     fit_mins = logbook.select("min")
@@ -383,8 +377,8 @@ if __name__ == '__main__':
 
     make_user_subroutines()
 
-    # check_point = CHECK_POINT
-    check_point = None
+    check_point = CHECK_POINT
+    # check_point = None
     toolbox = base.Toolbox()
 
     toolbox.register("map", futures.map)
@@ -395,7 +389,7 @@ if __name__ == '__main__':
     toolbox.register("individual",
                      tools.initRepeat,
                      creator.Individual,
-                     toolbox.attr_material, 500)
+                     toolbox.attr_material, 350)
 
     toolbox.register("population",
                      tools.initRepeat,
@@ -404,27 +398,24 @@ if __name__ == '__main__':
 
     toolbox.register("evaluate", evaluate_design)
     toolbox.register("mate", tools.cxTwoPoint)
-    # toolbox.register("mutate", tools.mutFlipBit, indpb=0.15)
     toolbox.register("mutate", tools.mutUniformInt, low=0, up=2, indpb=0.15)
-    # toolbox.register("select", tools.selTournament, tournsize=5)
-    toolbox.register("select", tools.selNSGA2)
+    toolbox.register("select", tools.selTournament, tournsize=3)
+    # toolbox.register("select", tools.selNSGA2)
     clear_directory()
 
     pop = toolbox.population(n=MU)
     hof = tools.HallOfFame(maxsize=1)
 
     stats = tools.Statistics(lambda ind: ind.fitness.values)
-    stats.register("avg", np.mean, axis=0)
-    stats.register("std", np.std, axis=0)
-    stats.register("min", np.min, axis=0)
-    stats.register("max", np.max, axis=0)
+    stats.register("avg", np.mean)#, axis=0)
+    stats.register("std", np.std)#, axis=0)
+    stats.register("min", np.min)#, axis=0)
+    stats.register("max", np.max)#, axis=0)
 
-    # pop, log = ea_mu_plus_lambda(pop, toolbox, check_point,
-    #                              mu=MU, lambda_=LAMBDA,
-    #                              cxpb=CXPB, mutpb=MUTPB, ngen=NGEN,
-    #                              stats=stats,
-    #                              halloffame=hof)
+    pop, log = ea_mu_plus_lambda(pop, toolbox, check_point,
+                                 mu=MU, lambda_=LAMBDA,
+                                 cxpb=CXPB, mutpb=MUTPB, ngen=NGEN,
+                                 stats=stats,
+                                 halloffame=hof)
 
     evaluate_best(CHECK_POINT)
-
-    post_process_evolution(CHECK_POINT)

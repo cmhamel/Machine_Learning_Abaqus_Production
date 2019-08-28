@@ -403,7 +403,7 @@ class ActiveComposite:
         #
         temp_field.setValuesInStep(stepName='Hold',
                                    amplitude='cooling',
-                                   magnitudes=25.0)
+                                   magnitudes=0.0)
 
         # a_heat = self.m.EquallySpacedAmplitude(name='heating',
         #                                        fixedInterval=60,

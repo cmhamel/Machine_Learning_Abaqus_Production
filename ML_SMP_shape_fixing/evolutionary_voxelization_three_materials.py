@@ -29,10 +29,10 @@ CXPB = 0.6
 MUTPB = 0.3
 NGEN = 125
 
-MU = 16
-LAMBDA = 30
+MU = 24
+LAMBDA = 45
 
-CHECK_POINT = "checkpoint_objet_three_material_shape_fixing_sinusoid.pkl"
+CHECK_POINT = "checkpoint_objet_three_material_shape_fixing_sinusoid_larger_amplitude.pkl"
 
 creator.create("FitnessFunc", base.Fitness, weights=(-1.0, ))
 creator.create("Individual", list, fitness=creator.FitnessFunc)
@@ -247,8 +247,8 @@ def evaluate_design(individual, gui=False, evaluatebest=False):
                              color='b', label='Achieved Shape')
                     plt.xlabel('X Coordinates (mm)')
                     plt.ylabel('Y Displacement (mm)')
-                    plt.xlim((0.0, 80.0))
-                    plt.ylim((-25.0, 5.0))
+                    plt.xlim((0.0, 70.0))
+                    plt.ylim((min(analytic_uy_1) * (5.0 / 4.0), 5.0))
                     ax = plt.subplot(111)
                     ax.legend(loc='lower left')
                     plt.title('Time Step ' + title)
@@ -263,7 +263,7 @@ def evaluate_design(individual, gui=False, evaluatebest=False):
 
 
 def target_shape_function(xs):
-    analytic_uy_1 = -4.0 * (np.ones(len(xs)) - np.cos(np.pi*xs/80.0))
+    analytic_uy_1 = -8.0 * (np.ones(len(xs)) - np.cos(np.pi*xs/80.0))
 
     analytic_uy_2 = -10.0 * np.square(2*xs/80.0)
 
@@ -377,8 +377,8 @@ if __name__ == '__main__':
 
     make_user_subroutines()
 
-    check_point = CHECK_POINT
-    # check_point = None
+    # check_point = CHECK_POINT
+    check_point = None
     toolbox = base.Toolbox()
 
     toolbox.register("map", futures.map)
@@ -412,10 +412,10 @@ if __name__ == '__main__':
     stats.register("min", np.min)#, axis=0)
     stats.register("max", np.max)#, axis=0)
 
-    pop, log = ea_mu_plus_lambda(pop, toolbox, check_point,
-                                 mu=MU, lambda_=LAMBDA,
-                                 cxpb=CXPB, mutpb=MUTPB, ngen=NGEN,
-                                 stats=stats,
-                                 halloffame=hof)
+    # pop, log = ea_mu_plus_lambda(pop, toolbox, check_point,
+    #                              mu=MU, lambda_=LAMBDA,
+    #                              cxpb=CXPB, mutpb=MUTPB, ngen=NGEN,
+    #                              stats=stats,
+    #                              halloffame=hof)
 
     evaluate_best(CHECK_POINT)

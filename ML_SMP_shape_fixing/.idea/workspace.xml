@@ -5,9 +5,13 @@
       <change beforePath="$PROJECT_DIR$/../ML_SMP_actuators/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ML_SMP_actuators/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ML_SMP_actuators/evolutionary_voxelization_v4.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/checkpoint_objet_three_material_shape_fixing_sinusoid.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/checkpoint_objet_two_shapes_during_activation_three_materials.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/checkpoint_objet_two_shapes_during_activation_three_materials_take_2.pkl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/evolutionary_voxelization_three_materials.py" beforeDir="false" afterPath="$PROJECT_DIR$/evolutionary_voxelization_three_materials.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/evolutionary_voxelization_v4.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/objet_SMP_GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/objet_SMP_GUI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/standardU.dll" beforeDir="false" afterPath="$PROJECT_DIR$/standardU.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utrs-std.obj" beforeDir="false" afterPath="$PROJECT_DIR$/utrs-std.obj" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -73,20 +77,20 @@
     <session id="-1224146786">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.0" value="1" />
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.4" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="385" />
+          <entry key="py" value="444" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="385" />
+          <entry key="Python" value="444" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -105,23 +109,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/evolutionary_voxelization_three_materials.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="712">
-              <caret line="418" column="24" selection-start-line="414" selection-start-column="4" selection-end-line="418" selection-end-column="24" />
-              <folding>
-                <element signature="e#1016#3968#0" />
-              </folding>
+            <state relative-caret-position="508">
+              <caret line="406" column="37" selection-start-line="406" selection-start-column="37" selection-end-line="406" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/objet_SMP_GUI.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5695">
-              <caret line="385" column="43" selection-start-line="385" selection-start-column="43" selection-end-line="385" selection-end-column="43" />
+            <state relative-caret-position="287">
+              <caret line="405" column="47" selection-start-line="405" selection-start-column="47" selection-end-line="405" selection-end-column="47" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
                 <element signature="e#988#1316#0" />
@@ -144,8 +145,8 @@
         <option value="$PROJECT_DIR$/evolutionary_voxelization_v4.py" />
         <option value="$PROJECT_DIR$/utrs.for" />
         <option value="$PROJECT_DIR$/objet_SMP.py" />
-        <option value="$PROJECT_DIR$/objet_SMP_GUI.py" />
         <option value="$PROJECT_DIR$/evolutionary_voxelization_three_materials.py" />
+        <option value="$PROJECT_DIR$/objet_SMP_GUI.py" />
       </list>
     </option>
   </component>
@@ -248,20 +249,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/objet_SMP_GUI.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5695">
-          <caret line="385" column="43" selection-start-line="385" selection-start-column="43" selection-end-line="385" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#988#1316#0" />
-            <element signature="e#1360#1812#0" />
-            <element signature="e#1850#2665#0" />
-            <element signature="e#2708#2857#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-2109429823/numpy/core/_multiarray_umath.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3203">
@@ -271,10 +258,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/evolutionary_voxelization_three_materials.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="712">
-          <caret line="418" column="24" selection-start-line="414" selection-start-column="4" selection-end-line="418" selection-end-column="24" />
+        <state relative-caret-position="508">
+          <caret line="406" column="37" selection-start-line="406" selection-start-column="37" selection-end-line="406" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/objet_SMP_GUI.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="405" column="47" selection-start-line="405" selection-start-column="47" selection-end-line="405" selection-end-column="47" />
           <folding>
-            <element signature="e#1016#3968#0" />
+            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#988#1316#0" />
+            <element signature="e#1360#1812#0" />
+            <element signature="e#1850#2665#0" />
+            <element signature="e#2708#2857#0" />
           </folding>
         </state>
       </provider>

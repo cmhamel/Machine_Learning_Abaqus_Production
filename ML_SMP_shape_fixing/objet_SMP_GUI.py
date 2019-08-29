@@ -245,8 +245,8 @@ class ActiveComposite:
         active_set_1 = p.Set(name='Active-Set-1',
                              faces=active_1)
 
-        active_set_2 = p.Set(name='Active-Set-2',
-                             faces=active_2)
+        # active_set_2 = p.Set(name='Active-Set-2',
+        #                      faces=active_2)
 
         passive_set = p.Set(name='Passive-Set',
                             faces=passive)
@@ -258,15 +258,15 @@ class ActiveComposite:
                                        name='Passive')
         self.m.HomogeneousSolidSection(material='Active_mat_1',
                                        name='Active_1')
-        self.m.HomogeneousSolidSection(material='Active_mat_2',
-                                       name='Active_2')
+        # self.m.HomogeneousSolidSection(material='Active_mat_2',
+        #                                name='Active_2')
 
         p.SectionAssignment(region=p.sets['Passive-Set'],
                             sectionName='Passive')
         p.SectionAssignment(region=p.sets['Active-Set-1'],
                             sectionName='Active_1')
-        p.SectionAssignment(region=p.sets['Active-Set-2'],
-                            sectionName='Active_2')
+        # p.SectionAssignment(region=p.sets['Active-Set-2'],
+        #                     sectionName='Active_2')
 
     def create_steps_and_assign_boundary_conditions(self):
 
@@ -348,7 +348,7 @@ class ActiveComposite:
 
         self.m.ViscoStep(name='Release',
                          previous='Hold',
-                         timePeriod=60,
+                         timePeriod=600,
                          initialInc=1,
                          minInc=1.e-8,
                          maxInc=5.0,

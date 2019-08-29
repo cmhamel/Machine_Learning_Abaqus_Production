@@ -29,8 +29,11 @@ CXPB = 0.6
 MUTPB = 0.3
 NGEN = 125
 
-MU = 24
-LAMBDA = 45
+NY = 5
+NX = 35
+
+MU = 16
+LAMBDA = 35
 
 CHECK_POINT = "checkpoint_objet_three_material_shape_fixing_sinusoid_larger_amplitude.pkl"
 
@@ -171,7 +174,7 @@ def evaluate_design(individual, gui=False, evaluatebest=False):
     with open(genome_name + '.txt', 'w') as f:
         f.write('**Heading\n')
         f.write('**Number of voxels in each direction, nx, ny\n')
-        ny = 5
+        ny = NY
         nx = int(len(individual) / ny)
         f.write(str(nx) + ', ' + str(ny) + '\n')
         for j in range(len(individual)):
@@ -188,16 +191,7 @@ def evaluate_design(individual, gui=False, evaluatebest=False):
                     stderr=fnull,
                     stdout=fnull)
     #
-    # now evaluate the fitness of this design
-    #
-    # if evaluatebest:
-    #     f_str = 'best-output.csv'
-    # else:
-    #     f_str = 'output-' + job_name + '.csv'
-    #
     f_str = 'output-' + job_name + '.csv'
-    #
-    coord = True
     #
     failed = False
     #
@@ -263,9 +257,9 @@ def evaluate_design(individual, gui=False, evaluatebest=False):
 
 
 def target_shape_function(xs):
-    analytic_uy_1 = -8.0 * (np.ones(len(xs)) - np.cos(np.pi*xs/80.0))
+    analytic_uy_1 = -6.0 * (np.ones(len(xs)) - np.cos(np.pi*xs/70.0))
 
-    analytic_uy_2 = -10.0 * np.square(2*xs/80.0)
+    analytic_uy_2 = -10.0 * np.square(2*xs/70.0)
 
     return analytic_uy_1, analytic_uy_2
 
@@ -384,12 +378,12 @@ if __name__ == '__main__':
     toolbox.register("map", futures.map)
 
     toolbox.register("attr_material",
-                     random.randint, 0, 2)
+                     random.randint, 0, 1)
 
     toolbox.register("individual",
                      tools.initRepeat,
                      creator.Individual,
-                     toolbox.attr_material, 350)
+                     toolbox.attr_material, NX*NY)
 
     toolbox.register("population",
                      tools.initRepeat,
@@ -412,10 +406,10 @@ if __name__ == '__main__':
     stats.register("min", np.min)#, axis=0)
     stats.register("max", np.max)#, axis=0)
 
-    # pop, log = ea_mu_plus_lambda(pop, toolbox, check_point,
-    #                              mu=MU, lambda_=LAMBDA,
-    #                              cxpb=CXPB, mutpb=MUTPB, ngen=NGEN,
-    #                              stats=stats,
-    #                              halloffame=hof)
+    pop, log = ea_mu_plus_lambda(pop, toolbox, check_point,
+                                 mu=MU, lambda_=LAMBDA,
+                                 cxpb=CXPB, mutpb=MUTPB, ngen=NGEN,
+                                 stats=stats,
+                                 halloffame=hof)
 
     evaluate_best(CHECK_POINT)
